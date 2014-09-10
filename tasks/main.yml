@@ -1,0 +1,32 @@
+---
+- name: Create {{tomcat_install_dir}}
+  file: path={{tomcat_install_dir}}
+        state=directory
+  tags: ['tomcat']
+
+- name: Check for existing tomcat-standalone installs in {{tomcat_install_dir}}
+  stat: path="{{tomcat_install_dir}}/apache-tomcat-{{tomcat_version}}"
+  register: tomcat_installed
+  tags: ['tomcat']
+
+- name: Download Tomcat Standalone
+  get_url: url={{tomcat_download_url}}
+           dest=/tmp/
+  when: tomcat_installed.stat.isdir is not defined
+  tags: ['tomcat']
+ 
+- name: Extract Tomcat Standalone {{tomcat_install_dir}}/apache-tomcat-{{tomcat_version}}
+  unarchive: copy=no
+             creates="{{tomcat_install_dir}}/apache-tomcat-{{tomcat_version}}"
+             dest={{tomcat_install_dir}}
+             src="/tmp/apache-tomcat-{{tomcat_version}}.tar.gz"
+  tags: ['tomcat']
+
+- name: Insert service config
+  template: src=tomcat_standalone.j2 
+            dest="/etc/init.d/{{tomcat_service}}"
+            mode=0755
+            owner=root
+            group=root
+  tags: ['tomcat']
+

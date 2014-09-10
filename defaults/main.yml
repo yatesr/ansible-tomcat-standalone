@@ -1,0 +1,8 @@
+---
+tomcat_version: 7.0.55
+tomcat_download_url: http://apache.osuosl.org/tomcat/tomcat-7/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz
+tomcat_install_dir: /opt/tomcat
+# Name of service
+tomcat_service: tomcat_standalone
+# User that will run tomcat
+tomcat_user: tomcat_standalone 
