@@ -22,6 +22,10 @@
              src="/tmp/apache-tomcat-{{tomcat_version}}.tar.gz"
   tags: ['tomcat']
 
+- name: Insert server.xml config
+  template: src=server.xml.j2
+            dest="{{tomcat_install_dir}}/apache-tomcat-{{tomcat_version}}/conf/server.xml"
+
 - name: Insert service config
   template: src=tomcat_standalone.j2 
             dest="/etc/init.d/{{tomcat_service}}"

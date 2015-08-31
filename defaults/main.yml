@@ -6,3 +6,4 @@ tomcat_install_dir: /opt/tomcat
 tomcat_service: tomcat_standalone
 # User that will run tomcat
 tomcat_user: tomcat_standalone 
+tomcat_http_port: "8080"
