@@ -1,5 +1,5 @@
 ---
-tomcat_version: 7.0.61
+tomcat_version: 7.0.64
 tomcat_download_url: http://apache.osuosl.org/tomcat/tomcat-7/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz
 tomcat_install_dir: /opt/tomcat
 # Name of service
